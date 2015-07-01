@@ -60,13 +60,13 @@ namespace facter { namespace execution {
      * System command shell available for executing shell scripts.
      * Uses 'cmd' on Windows and 'sh' on *nix systems.
      */
-    extern const char *const command_shell LIBFACTER_EXPORT;
+	LIBFACTER_EXPORT extern const char *const command_shell;
 
     /**
      * System command shell arguments to accept a script as an argument.
      * Uses '/c' on Windows and '-c' on *nix systems.
      */
-    extern const char *const command_args LIBFACTER_EXPORT;
+	LIBFACTER_EXPORT extern const char *const command_args;
 
     /**
      * Base class for execution exceptions.

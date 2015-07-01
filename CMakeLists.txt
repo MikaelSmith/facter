@@ -45,7 +45,7 @@ elseif(AIX)
     # all up.
     set(PRECOMPILED_HEADERS FALSE)
 else()
-    set(PRECOMPILED_HEADERS TRUE)
+    set(PRECOMPILED_HEADERS FALSE)
 endif()
 
 if ("${CMAKE_SYSTEM_NAME}" MATCHES "Darwin")

@@ -41,7 +41,7 @@ namespace facter { namespace facts { namespace resolvers {
 
         // Get the ZFS version
         static boost::regex zfs_version("currently running ZFS filesystem version (\\d+)[.]");
-        execution::each_line(zfs_command(), {"upgrade"}, [&] (string& line) {
+        execution::each_line(zfs_command(), vector<string>{"upgrade"}, [&] (string& line) {
             if (re_search(line, zfs_version, &result.version)) {
                 return false;
             }
@@ -50,7 +50,7 @@ namespace facter { namespace facts { namespace resolvers {
 
         // Get the ZFS features
         static boost::regex zfs_feature("\\s*(\\d+)[ ]");
-        execution::each_line(zfs_command(), {"upgrade", "-v"}, [&] (string& line) {
+        execution::each_line(zfs_command(), vector<string>{"upgrade", "-v"}, [&] (string& line) {
             string feature;
             if (re_search(line, zfs_feature, &feature)) {
                 result.features.emplace_back(move(feature));
