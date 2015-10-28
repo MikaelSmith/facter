@@ -78,7 +78,7 @@ if (!(Get-Command choco -ErrorAction SilentlyContinue)) {
 }
 Install-Choco 7zip.commandline 9.20.0.20150210
 Install-Choco cmake 3.2.2
-Install-Choco git.install 1.9.5.20150320
+Install-Choco git.install 2.6.2.20151028
 
 # For MinGW, we expect specific project defaults
 # - win32 threads, for Windows Server 2003 support
