@@ -129,7 +129,8 @@ add_subdirectory("vendor/leatherman")
 #
 # Add cpplint and cppcheck targets
 #
-file(GLOB_RECURSE ALL_SOURCES lib/src/*.cc lib/inc/*.hpp lib/inc/version.h exe/*.cc exe/*.hpp exe/*.h)
+set(file_glob lib/src/*.cc lib/inc/*.hpp lib/inc/version.h exe/*.cc exe/*.hpp exe/*.h)
+file(GLOB_RECURSE ALL_SOURCES ${file_glob})
 add_cpplint_files(${ALL_SOURCES})
 enable_cpplint()
 
@@ -138,6 +139,9 @@ enable_cppcheck()
 
 # Pull in helper macros for working with leatherman libraries
 include(leatherman)
+
+gettext_templates(${CMAKE_CURRENT_SOURCE_DIR}/locales ${file_glob})
+gettext_compile(${CMAKE_CURRENT_SOURCE_DIR}/locales share/locale)
 
 add_subdirectory(lib)
 add_subdirectory(exe)

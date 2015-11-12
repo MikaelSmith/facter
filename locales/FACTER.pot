@@ -1,0 +1,1389 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Puppet Labs <docs@puppetlabs.com>
+# This file is distributed under the same license as the FACTER package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FACTER \n"
+"Report-Msgid-Bugs-To: docs@puppetlabs.com\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: exe/facter.cc:36
+msgid "Synopsis\n"
+msgstr ""
+
+#: exe/facter.cc:39
+msgid "Collect and display facts about the system.\n"
+msgstr ""
+
+#: exe/facter.cc:41
+msgid "Usage\n"
+msgstr ""
+
+#: exe/facter.cc:44
+msgid "  facter [options] [query] [query] [...]\n"
+msgstr ""
+
+#: exe/facter.cc:46
+msgid "Options\n"
+msgstr ""
+
+#: exe/facter.cc:48
+msgid ""
+"\n"
+"Description\n"
+msgstr ""
+
+#: exe/facter.cc:51
+msgid ""
+"Collect and display facts about the current system.  The library behind\n"
+"facter is easy to extend, making facter an easy way to collect information\n"
+"about a system.\n"
+msgstr ""
+
+#: exe/facter.cc:55
+msgid "If no queries are given, then all facts will be returned.\n"
+msgstr ""
+
+#: exe/facter.cc:57
+msgid "Example Queries\n"
+msgstr ""
+
+#: exe/facter.cc:59
+msgid "  facter kernel\n"
+msgstr ""
+
+#: exe/facter.cc:60
+msgid "  facter networking.ip\n"
+msgstr ""
+
+#: exe/facter.cc:61
+msgid "  facter processors.models.0"
+msgstr ""
+
+#: exe/facter.cc:76
+#, boost-format
+msgid "executed with command line: %1%."
+msgstr ""
+
+#: exe/facter.cc:86
+msgid "resolving all facts."
+msgstr ""
+
+#: exe/facter.cc:100
+#, boost-format
+msgid "requested queries: %1%."
+msgstr ""
+
+#: exe/facter.cc:117
+msgid "help"
+msgstr ""
+
+#: exe/facter.cc:123
+msgid "Enables color output."
+msgstr ""
+
+#: exe/facter.cc:123
+#: exe/facter.cc:171
+#: exe/facter.cc:211
+msgid "color"
+msgstr ""
+
+#: exe/facter.cc:124
+msgid "A directory to use for custom facts."
+msgstr ""
+
+#: exe/facter.cc:124
+#: exe/facter.cc:180
+#: exe/facter.cc:186
+msgid "custom-dir"
+msgstr ""
+
+#: exe/facter.cc:125
+msgid "Enable debug output."
+msgstr ""
+
+#: exe/facter.cc:125
+msgid "debug,d"
+msgstr ""
+
+#: exe/facter.cc:126
+msgid "A directory to use for external facts."
+msgstr ""
+
+#: exe/facter.cc:126
+#: exe/facter.cc:177
+msgid "external-dir"
+msgstr ""
+
+#: exe/facter.cc:127
+msgid "Print this help message."
+msgstr ""
+
+#: exe/facter.cc:128
+msgid "Output in JSON format."
+msgstr ""
+
+#: exe/facter.cc:128
+msgid "json,j"
+msgstr ""
+
+#: exe/facter.cc:129
+msgid "Show legacy facts when querying all facts."
+msgstr ""
+
+#: exe/facter.cc:129
+#: exe/facter.cc:281
+msgid "show-legacy"
+msgstr ""
+
+#: exe/facter.cc:130
+msgid ""
+"Set logging level.\n"
+"Supported levels are: none, trace, debug, info, warn, error, and fatal."
+msgstr ""
+
+#: exe/facter.cc:130
+msgid "log-level,l"
+msgstr ""
+
+#: exe/facter.cc:131
+msgid "Disables color output."
+msgstr ""
+
+#: exe/facter.cc:131
+#: exe/facter.cc:171
+#: exe/facter.cc:213
+msgid "no-color"
+msgstr ""
+
+#: exe/facter.cc:132
+msgid "Disables custom facts."
+msgstr ""
+
+#: exe/facter.cc:132
+#: exe/facter.cc:180
+#: exe/facter.cc:189
+#: exe/facter.cc:269
+msgid "no-custom-facts"
+msgstr ""
+
+#: exe/facter.cc:133
+msgid "Disables external facts."
+msgstr ""
+
+#: exe/facter.cc:133
+#: exe/facter.cc:177
+#: exe/facter.cc:262
+msgid "no-external-facts"
+msgstr ""
+
+#: exe/facter.cc:134
+msgid "Disables loading Ruby, facts requiring Ruby, and custom facts."
+msgstr ""
+
+#: exe/facter.cc:134
+#: exe/facter.cc:186
+#: exe/facter.cc:192
+#: exe/facter.cc:229
+msgid "no-ruby"
+msgstr ""
+
+#: exe/facter.cc:135
+msgid ""
+"(Deprecated: use `puppet facts` instead) Load the Puppet libraries, thus "
+"allowing Facter to load Puppet-specific facts."
+msgstr ""
+
+#: exe/facter.cc:135
+msgid "puppet,p"
+msgstr ""
+
+#: exe/facter.cc:136
+msgid "Enable backtraces for custom facts."
+msgstr ""
+
+#: exe/facter.cc:136
+#: exe/facter.cc:229
+msgid "trace"
+msgstr ""
+
+#: exe/facter.cc:137
+msgid "Enable verbose (info) output."
+msgstr ""
+
+#: exe/facter.cc:137
+#: exe/facter.cc:183
+#: exe/facter.cc:221
+msgid "verbose"
+msgstr ""
+
+#: exe/facter.cc:138
+msgid "Print the version and exit."
+msgstr ""
+
+#: exe/facter.cc:138
+msgid "version,v"
+msgstr ""
+
+#: exe/facter.cc:139
+msgid "Output in YAML format."
+msgstr ""
+
+#: exe/facter.cc:139
+msgid "yaml,y"
+msgstr ""
+
+#: exe/facter.cc:155
+#: exe/facter.cc:238
+#: exe/facter.cc:239
+msgid "query"
+msgstr ""
+
+#: exe/facter.cc:172
+msgid "color and no-color options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:174
+msgid "json"
+msgstr ""
+
+#: exe/facter.cc:174
+#: exe/facter.cc:277
+msgid "yaml"
+msgstr ""
+
+#: exe/facter.cc:175
+msgid "json and yaml options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:178
+msgid ""
+"no-external-facts and external-dir options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:181
+msgid ""
+"no-custom-facts and custom-dir options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:183
+#: exe/facter.cc:219
+msgid "debug"
+msgstr ""
+
+#: exe/facter.cc:183
+#: exe/facter.cc:218
+msgid "log-level"
+msgstr ""
+
+#: exe/facter.cc:184
+msgid ""
+"debug, verbose, and log-level options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:187
+msgid "no-ruby and custom-dir options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:189
+#: exe/facter.cc:192
+#: exe/facter.cc:270
+msgid "puppet"
+msgstr ""
+
+#: exe/facter.cc:190
+msgid "puppet and no-custom-facts options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:193
+msgid "puppet and no-ruby options conflict: please specify only one."
+msgstr ""
+
+#: exe/facter.cc:205
+msgid "version"
+msgstr ""
+
+#. warning
+#: lib/inc/internal/util/agent.hpp:25
+#, boost-format
+msgid "%1% not found at configured location %2%, using PATH instead"
+msgstr ""
+
+#. warning
+#: lib/src/facts/aix/kernel_resolver.cc:45
+#, boost-format
+msgid "oslevel failed: %1%: kernel facts are unavailable"
+msgstr ""
+
+#. warning
+#: lib/src/facts/aix/kernel_resolver.cc:51
+msgid ""
+"Could not parse rml cache even after regenerating with oslevel: kernel facts "
+"are unavailable. Try running 'oslevel -s' to debug."
+msgstr ""
+
+#. warning
+#: lib/src/facts/aix/networking_resolver.cc:180
+#, boost-format
+msgid ""
+"got mixed address families for interface %1%, can't map them to a single "
+"binding."
+msgstr ""
+
+#. info
+#: lib/src/facts/aix/networking_resolver.cc:182
+#, boost-format
+msgid "got ipv4 addresses for interface %1%"
+msgstr ""
+
+#. info
+#: lib/src/facts/aix/networking_resolver.cc:185
+#, boost-format
+msgid "got ipv6 addresses for interface %1%"
+msgstr ""
+
+#. info
+#: lib/src/facts/aix/networking_resolver.cc:188
+#, boost-format
+msgid "skipping unknown address family %1% for interface %2%"
+msgstr ""
+
+#. info
+#: lib/src/facts/aix/networking_resolver.cc:190
+#, boost-format
+msgid "somehow didn't get an address family for interface %1%"
+msgstr ""
+
+#. info
+#: lib/src/facts/aix/networking_resolver.cc:195
+#, boost-format
+msgid "got an unknown RT_IFLIST message: %1%"
+msgstr ""
+
+#. warning
+#: lib/src/facts/aix/operating_system_resolver.cc:38
+#, boost-format
+msgid "Could not get a value from lsattr -El %1% -a %2%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/aix/processor_resolver.cc:48
+#, boost-format
+msgid "got a processor type: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/aix/processor_resolver.cc:57
+#, boost-format
+msgid "got a processor: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/aix/processor_resolver.cc:67
+#, boost-format
+msgid "got attribute %1%=%2% for processor %3%"
+msgstr ""
+
+#. info
+#: lib/src/facts/aix/processor_resolver.cc:77
+#, boost-format
+msgid "don't know what to do with processor attribute %1%"
+msgstr ""
+
+#. warning
+#: lib/src/facts/aix/processor_resolver.cc:84
+msgid ""
+"mismatched processor frequencies found; facter will only report one of them"
+msgstr ""
+
+#. debug
+#: lib/src/facts/aix/serial_number_resolver.cc:39
+msgid ""
+"Could not retrieve serial number: sys0 systemid did not match the expected "
+"format"
+msgstr ""
+
+#. debug
+#: lib/src/facts/array_value.cc:30
+msgid "null value cannot be added to array."
+msgstr ""
+
+#. error
+#: lib/src/facts/bsd/filesystem_resolver.cc:20
+#: lib/src/facts/bsd/filesystem_resolver.cc:28
+#, boost-format
+msgid "getfsstat failed: %1% (%2%): file system facts are unavailable."
+msgstr ""
+
+#. warning
+#: lib/src/facts/bsd/networking_resolver.cc:25
+#, boost-format
+msgid "getifaddrs failed: %1% (%2%): interface information is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/bsd/networking_resolver.cc:134
+#, boost-format
+msgid "searching \"%1%\" for dhclient lease files."
+msgstr ""
+
+#. debug
+#: lib/src/facts/bsd/networking_resolver.cc:136
+#, boost-format
+msgid "reading \"%1%\" for dhclient lease information."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:96
+#, boost-format
+msgid ""
+"fact \"%1%\" resolved to null and the existing value of %2% will be removed."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:100
+#, boost-format
+msgid "fact \"%1%\" has changed from %2% to %3%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:104
+#, boost-format
+msgid "fact \"%1%\" resolved to null and will not be added."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:108
+#, boost-format
+msgid "fact \"%1%\" has resolved to %2%."
+msgstr ""
+
+#. warning
+#. debug
+#: lib/src/facts/collection.cc:134
+#: lib/src/facts/collection.cc:136
+#, boost-format
+msgid "skipping external facts for \"%1%\": %2%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:141
+#, boost-format
+msgid "searching %1% for external facts."
+msgstr ""
+
+#. error
+#: lib/src/facts/collection.cc:151
+#, boost-format
+msgid "error while processing \"%1%\" for external facts: %2%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:177
+msgid "no external facts were found."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:191
+#, boost-format
+msgid ""
+"setting fact \"%1%\" based on the value of environment variable \"%2%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:297
+#: lib/src/facts/collection.cc:310
+#: lib/src/facts/collection.cc:323
+#, boost-format
+msgid "resolving %1% facts."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:370
+#, boost-format
+msgid "cannot lookup an element with \"%1%\" from Ruby fact"
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:391
+#, boost-format
+msgid "fact \"%1%\" does not exist."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:400
+#, boost-format
+msgid "cannot lookup a hash element with \"%1%\": element does not exist."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:411
+#: lib/src/ruby/ruby.cc:96
+#, boost-format
+msgid ""
+"cannot lookup an array element with \"%1%\": expected an integral value."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:415
+#: lib/src/ruby/ruby.cc:100
+#, boost-format
+msgid ""
+"cannot lookup an array element with \"%1%\": expected a non-negative value."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:419
+#: lib/src/ruby/ruby.cc:105
+#, boost-format
+msgid "cannot lookup an array element with \"%1%\": the array is empty."
+msgstr ""
+
+#. debug
+#: lib/src/facts/collection.cc:423
+#: lib/src/ruby/ruby.cc:110
+#, boost-format
+msgid ""
+"cannot lookup an array element with \"%1%\": expected an integral value "
+"between 0 and %2% (inclusive)."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/execution_resolver.cc:22
+#, boost-format
+msgid "checking execution on %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/execution_resolver.cc:28
+#, boost-format
+msgid "resolving facts from executable file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/execution_resolver.cc:38
+#: lib/src/facts/external/text_resolver.cc:26
+#: lib/src/facts/external/windows/powershell_resolver.cc:67
+#, boost-format
+msgid "ignoring line in output: %1%"
+msgstr ""
+
+#. warning
+#: lib/src/facts/external/execution_resolver.cc:63
+#: lib/src/facts/external/windows/powershell_resolver.cc:92
+#, boost-format
+msgid "external fact file \"%1%\" had output on stderr: %2%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/execution_resolver.cc:70
+#, boost-format
+msgid "completed resolving facts from executable file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/json_resolver.cc:191
+#, boost-format
+msgid "resolving facts from JSON file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/json_resolver.cc:212
+#, boost-format
+msgid "completed resolving facts from JSON file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/text_resolver.cc:21
+#, boost-format
+msgid "resolving facts from text file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/text_resolver.cc:38
+#, boost-format
+msgid "completed resolving facts from text file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/windows/powershell_resolver.cc:32
+#, boost-format
+msgid "resolving facts from powershell script \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/windows/powershell_resolver.cc:99
+#, boost-format
+msgid "completed resolving facts from powershell script \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/yaml_resolver.cc:75
+#, boost-format
+msgid "resolving facts from YAML file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/external/yaml_resolver.cc:91
+#, boost-format
+msgid "completed resolving facts from YAML file \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/facts/glib/load_average_resolver.cc:17
+#, boost-format
+msgid "failed to retrieve load averages: %1% (%2%)."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/disk_resolver.cc:29
+#, boost-format
+msgid "%1%: %2%: disk facts are unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/disk_resolver.cc:58
+#, boost-format
+msgid "size of disk %1% is invalid: size information is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/dmi_resolver.cc:40
+msgid ""
+"/sys/class/dmi cannot be accessed: using dmidecode to query DMI information."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/dmi_resolver.cc:176
+#, boost-format
+msgid "%1%: %2%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/dmi_resolver.cc:182
+#, boost-format
+msgid "%1%: file could not be read."
+msgstr ""
+
+#. error
+#: lib/src/facts/linux/filesystem_resolver.cc:70
+#, boost-format
+msgid "setmntent failed: %1% (%2%): mountpoints are unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/filesystem_resolver.cc:148
+msgid "blkid_probe_all failed: partition attributes are not available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/filesystem_resolver.cc:154
+msgid "blkid_get_cache failed: partition attributes are not available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/filesystem_resolver.cc:157
+msgid ""
+"facter was built without libblkid support: partition attributes are not "
+"available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/filesystem_resolver.cc:224
+#, boost-format
+msgid "blkid_get_dev failed: partition attributes are unavailable for '%1%'."
+msgstr ""
+
+#. debug
+#: lib/src/facts/linux/filesystem_resolver.cc:273
+#, boost-format
+msgid ""
+"cannot determine size of partition '%1%': '%2%' is not an integral value."
+msgstr ""
+
+#. warning
+#: lib/src/facts/linux/networking_resolver.cc:45
+#: lib/src/facts/openbsd/networking_resolver.cc:31
+#, boost-format
+msgid ""
+"socket failed: %1% (%2%): interface MTU fact is unavailable for interface "
+"%3%."
+msgstr ""
+
+#. warning
+#: lib/src/facts/linux/networking_resolver.cc:50
+#: lib/src/facts/openbsd/networking_resolver.cc:36
+#, boost-format
+msgid ""
+"ioctl failed: %1% (%2%): interface MTU fact is unavailable for interface %3%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/map_value.cc:32
+msgid "null value cannot be added to map."
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/dmi_resolver.cc:33
+#, boost-format
+msgid "sysctl_lookup failed: %1% (%2%)."
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/memory_resolver.cc:26
+#: lib/src/facts/osx/memory_resolver.cc:29
+#, boost-format
+msgid "sysctl failed: %1% (%2%): system page size is unknown."
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/memory_resolver.cc:32
+#, boost-format
+msgid "sysctl uvmexp failed: %1% (%2%): free memory is not available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/memory_resolver.cc:45
+#, boost-format
+msgid "swapctl: SWAP_STATS failed: %1% (%2%)"
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/memory_resolver.cc:65
+#, boost-format
+msgid "sysctl failed: %1% (%2%): encrypted swap fact not available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/processor_resolver.cc:22
+#, boost-format
+msgid ""
+"sysctl hw.ncpu failed: %1% (%2%): logical processor count is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/processor_resolver.cc:40
+#, boost-format
+msgid "sysctl hw.model failed: %1% (%2%): processor models are unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/openbsd/processor_resolver.cc:51
+#, boost-format
+msgid "sysctl hw.cpuspeed failed: %1% (%2%): processor speed is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/dmi_resolver.cc:18
+#: lib/src/facts/osx/dmi_resolver.cc:24
+#, boost-format
+msgid "sysctl failed: %1% (%2%): DMI facts are unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/memory_resolver.cc:20
+#, boost-format
+msgid "sysctl failed: %1% (%2%): total memory size is not available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/memory_resolver.cc:36
+#, boost-format
+msgid "host_statistics64 failed: %1% (%2%): free memory size is not available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/memory_resolver.cc:51
+#, boost-format
+msgid "sysctl failed: %1% (%2%): swap data is not available."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/processor_resolver.cc:17
+msgid "sysctlbyname failed: logical processor count is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/processor_resolver.cc:23
+#, boost-format
+msgid ""
+"sysctlbyname failed: %1% (%2%): physical processor count is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/processor_resolver.cc:39
+#, boost-format
+msgid "sysctlbyname failed: %1% (%2%): processor models are unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/osx/processor_resolver.cc:49
+#, boost-format
+msgid "sysctlbyname failed: %1% (%2%): processor speed is unavailable."
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/identity_resolver.cc:31
+#, boost-format
+msgid "getpwuid_r failed: %1% (%2%)"
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/identity_resolver.cc:33
+#, boost-format
+msgid "effective uid %1% does not have a passwd entry."
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/identity_resolver.cc:53
+#, boost-format
+msgid "getgrgid_r failed: %1% (%2%)"
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/identity_resolver.cc:55
+#, boost-format
+msgid "effective gid %1% does not have a group entry."
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/kernel_resolver.cc:15
+#: lib/src/facts/solaris/kernel_resolver.cc:14
+#, boost-format
+msgid "uname failed: %1% (%2%): kernel facts are unavailable."
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/networking_resolver.cc:72
+#, boost-format
+msgid "gethostname failed: %1% (%2%): hostname is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/networking_resolver.cc:77
+#, boost-format
+msgid "using the FQDN returned by gethostname: %1%."
+msgstr ""
+
+#. error
+#: lib/src/facts/posix/networking_resolver.cc:94
+#, boost-format
+msgid ""
+"getaddrinfo failed: %1% (%2%): hostname may not be externally resolvable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/networking_resolver.cc:96
+#, boost-format
+msgid ""
+"hostname \"%1%\" could not be resolved: hostname may not be externally "
+"resolvable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/operatingsystem_resolver.cc:19
+#, boost-format
+msgid "uname failed: %1% (%2%): OS hardware is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/ssh_resolver.cc:64
+#, boost-format
+msgid "%1% could not be located."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/ssh_resolver.cc:71
+#, boost-format
+msgid "%1% could not be read."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/ssh_resolver.cc:79
+#, boost-format
+msgid "unexpected contents for %1%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/ssh_resolver.cc:98
+#, boost-format
+msgid "failed to decode SSH key \"%1%\"."
+msgstr ""
+
+#. info
+#: lib/src/facts/posix/ssh_resolver.cc:111
+msgid ""
+"facter was built without OpenSSL support: SSH fingerprint information is "
+"unavailable."
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/timezone_resolver.cc:16
+msgid "localtime_r failed: timezone is unavailable."
+msgstr ""
+
+#. warning
+#: lib/src/facts/posix/timezone_resolver.cc:20
+msgid "strftime failed: timezone is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/posix/xen_resolver.cc:24
+#, boost-format
+msgid "failure executing %1%: %2%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/ec2_resolver.cc:47
+#: lib/src/facts/resolvers/ec2_resolver.cc:70
+#: lib/src/facts/resolvers/ec2_resolver.cc:153
+#: lib/src/facts/resolvers/gce_resolver.cc:246
+#, boost-format
+msgid "request for %1% returned a status code of %2%."
+msgstr ""
+
+#. info
+#: lib/src/facts/resolvers/ec2_resolver.cc:109
+msgid "EC2 facts are unavailable: facter was built without libcurl support."
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/ec2_resolver.cc:114
+msgid "EC2 facts are unavailable: not running under an EC2 instance."
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/ec2_resolver.cc:118
+#, boost-format
+msgid "querying EC2 instance metadata at %1%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/ec2_resolver.cc:134
+msgid ""
+"EC2 facts are unavailable: not running under an EC2 instance or EC2 is not "
+"responding in a timely manner."
+msgstr ""
+
+#. error
+#: lib/src/facts/resolvers/ec2_resolver.cc:138
+#: lib/src/facts/resolvers/ec2_resolver.cc:141
+#, boost-format
+msgid "EC2 metadata request failed: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/ec2_resolver.cc:144
+#, boost-format
+msgid "querying EC2 instance user data at %1%."
+msgstr ""
+
+#. error
+#: lib/src/facts/resolvers/ec2_resolver.cc:159
+#, boost-format
+msgid "EC2 user data request failed: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/gce_resolver.cc:228
+msgid "not running under a GCE instance."
+msgstr ""
+
+#. info
+#: lib/src/facts/resolvers/gce_resolver.cc:232
+msgid "GCE facts are unavailable: facter was built without libcurl support."
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/gce_resolver.cc:235
+msgid "querying GCE metadata."
+msgstr ""
+
+#. error
+#: lib/src/facts/resolvers/gce_resolver.cc:257
+#, boost-format
+msgid "failed to parse GCE metadata: %1%."
+msgstr ""
+
+#. error
+#: lib/src/facts/resolvers/gce_resolver.cc:265
+#, boost-format
+msgid "GCE metadata request failed: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/resolvers/networking_resolver.cc:62
+msgid ""
+"no primary interface found: using the first interface with an assigned "
+"address as the primary interface."
+msgstr ""
+
+#. error
+#: lib/src/facts/resolvers/ruby_resolver.cc:31
+#, boost-format
+msgid "error while resolving ruby %1% fact: %2%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/disk_resolver.cc:30
+#, boost-format
+msgid "disk information is unavailable: %1%."
+msgstr ""
+
+#. error
+#: lib/src/facts/solaris/filesystem_resolver.cc:39
+#, boost-format
+msgid "fopen of /etc/mnttab failed: %1% (%2%): mountpoint data is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/memory_resolver.cc:32
+#, boost-format
+msgid "failed to read memory facts from kstat api: %1%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/memory_resolver.cc:54
+#, boost-format
+msgid "swapctl failed: %1% (%2%): swap information is unavailable"
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/memory_resolver.cc:77
+#, boost-format
+msgid "swapctl with SC_LIST failed: %1% (%2%): swap information is unavailable"
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:23
+#, boost-format
+msgid "socket failed %1% (%2%): interface information is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:30
+#, boost-format
+msgid ""
+"ioctl with SIOCGLIFNUM failed: %1% (%2%): interface information is "
+"unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:37
+#, boost-format
+msgid ""
+"ioctl with SIOCGLIFCONF failed: %1% (%2%): interface information is "
+"unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:97
+#, boost-format
+msgid ""
+"socket failed: %1% (%2%): netmask and network for interface %3% are "
+"unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:101
+#, boost-format
+msgid ""
+"ioctl with SIOCGLIFNETMASK failed: %1% (%2%): netmask and network for "
+"interface %3% are unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:115
+#, boost-format
+msgid ""
+"socket failed: %1% (%2%): link level address for interface %3% is "
+"unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:123
+#, boost-format
+msgid ""
+"ioctl with SIOCGARP failed: %1% (%2%): link level address for %3% is "
+"unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:134
+#, boost-format
+msgid "socket failed: %1% (%2%): MTU for interface %3% is unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/networking_resolver.cc:140
+#, boost-format
+msgid ""
+"ioctl with SIOCGLIFMTU failed: %1% (%2%): MTU for interface %3% is "
+"unavailable."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/processor_resolver.cc:73
+#, boost-format
+msgid "failed to read processor data entry: %1%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/solaris/processor_resolver.cc:78
+#, boost-format
+msgid "failed to read processor data from kstat api: %1%."
+msgstr ""
+
+#. warning
+#: lib/src/facts/solaris/virtualization_resolver.cc:49
+#, boost-format
+msgid "execution of prtdiag has timed out after %1% seconds."
+msgstr ""
+
+#. warning
+#: lib/src/facts/windows/collection.cc:43
+#, boost-format
+msgid "error finding COMMON_APPDATA, external facts unavailable: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/collection.cc:52
+msgid "HOME environment variable not set, external facts unavailable"
+msgstr ""
+
+#. error
+#: lib/src/facts/windows/collection.cc:87
+#, boost-format
+msgid "failed adding platform facts that require WMI: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/dmi_resolver.cc:22
+#, boost-format
+msgid "WMI query returned no results for %1% with value %2%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/dmi_resolver.cc:29
+#, boost-format
+msgid "WMI query returned no results for %1% with values %2% and %3%."
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/identity_resolver.cc:23
+#: lib/src/facts/windows/identity_resolver.cc:30
+#, boost-format
+msgid "failure resolving identity facts: %1% (%2%)"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/kernel_resolver.cc:71
+#, boost-format
+msgid "failed to retrieve kernel facts: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/memory_resolver.cc:15
+#, boost-format
+msgid "resolving memory facts failed: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:43
+#: lib/src/facts/windows/networking_resolver.cc:49
+#, boost-format
+msgid "failure resolving hostname: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:61
+#, boost-format
+msgid "failed creating IPv4 mask of length %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:72
+#, boost-format
+msgid "failed creating IPv6 mask with component of length %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:111
+#: lib/src/facts/windows/networking_resolver.cc:117
+#, boost-format
+msgid "failure getting netmask info: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:132
+#, boost-format
+msgid "found %1% netmask entries"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:147
+#, boost-format
+msgid "failure getting networking::domain fact: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:166
+#: lib/src/facts/windows/networking_resolver.cc:172
+#, boost-format
+msgid "failure resolving networking facts: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:201
+#, boost-format
+msgid "failed to retrieve dhcp v4 server address for %1%: %2%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:215
+#, boost-format
+msgid "failed to retrieve ip%1% address for %2%: %3%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:262
+#, boost-format
+msgid "netmask for %1% (IPv6) is not supported on this platform"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/networking_resolver.cc:272
+#, boost-format
+msgid "could not find netmask for %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/operating_system_resolver.cc:60
+#, boost-format
+msgid "error finding SYSTEMROOT: %1%"
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/processor_resolver.cc:27
+msgid "WMI processor Name, Architecture query returned no results."
+msgstr ""
+
+#. debug
+#: lib/src/facts/windows/processor_resolver.cc:62
+msgid "Unable to determine processor type: unknown architecture"
+msgstr ""
+
+#. warning
+#: lib/src/facts/windows/timezone_resolver.cc:16
+#, boost-format
+msgid "localtime failed: timezone is unavailable: %1% (%2%)"
+msgstr ""
+
+#. warning
+#: lib/src/facts/windows/timezone_resolver.cc:22
+#, boost-format
+msgid "wcsftime failed: timezone is unavailable: %1% (%2%)"
+msgstr ""
+
+#. error
+#: lib/src/ruby/fact.cc:116
+#, boost-format
+msgid "error while resolving custom fact \"%1%\": %2%"
+msgstr ""
+
+#. warning
+#: lib/src/ruby/fact.cc:218
+msgid "timeout option is not supported for custom facts and will be ignored."
+msgstr ""
+
+#. warning
+#: lib/src/ruby/module.cc:132
+#: lib/src/ruby/ruby.cc:42
+#, boost-format
+msgid "%1%: facts requiring Ruby will not be resolved."
+msgstr ""
+
+#. warning
+#: lib/src/ruby/module.cc:280
+#, boost-format
+msgid "%1%: Ruby cleanup ended prematurely"
+msgstr ""
+
+#. debug
+#: lib/src/ruby/module.cc:307
+msgid "loading all custom facts."
+msgstr ""
+
+#. debug
+#: lib/src/ruby/module.cc:310
+#, boost-format
+msgid "searching for custom facts in %1%."
+msgstr ""
+
+#. error
+#: lib/src/ruby/module.cc:452
+#, boost-format
+msgid "%1% uncaught exception: %2%"
+msgstr ""
+
+#. debug
+#: lib/src/ruby/module.cc:965
+#, boost-format
+msgid "path \"%1%\" will not be searched for custom facts: %2%."
+msgstr ""
+
+#. debug
+#: lib/src/ruby/module.cc:994
+#, boost-format
+msgid "searching for custom fact \"%1%\"."
+msgstr ""
+
+#. debug
+#: lib/src/ruby/module.cc:997
+#, boost-format
+msgid "searching for %1% in %2%."
+msgstr ""
+
+#. debug
+#: lib/src/ruby/module.cc:1033
+#, boost-format
+msgid "custom fact \"%1%\" was not found."
+msgstr ""
+
+#. info
+#: lib/src/ruby/module.cc:1046
+#, boost-format
+msgid "loading custom facts from %1%."
+msgstr ""
+
+#. error
+#: lib/src/ruby/module.cc:1053
+#, boost-format
+msgid "error while resolving custom facts in %1%: %2%"
+msgstr ""
+
+#. warning
+#: lib/src/ruby/resolution.cc:202
+msgid "timeout= is not supported for custom facts and will be ignored."
+msgstr ""
+
+#. debug
+#: lib/src/ruby/ruby.cc:126
+#, boost-format
+msgid "cannot lookup element \"%1%\": container is not an array or hash"
+msgstr ""
+
+#. debug
+#: lib/src/util/windows/wsa.cc:22
+msgid "initializing Winsock"
+msgstr ""
