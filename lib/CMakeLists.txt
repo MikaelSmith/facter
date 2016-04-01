@@ -235,7 +235,7 @@ elseif ("${CMAKE_SYSTEM_NAME}" MATCHES "Windows")
         iphlpapi.lib
         userenv.lib
     )
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPSAPI_VERSION=1")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPSAPI_VERSION=2")
 endif()
 
 if (WIN32)
@@ -282,7 +282,7 @@ link_directories(
 add_library(libfactersrc OBJECT ${LIBFACTER_COMMON_SOURCES} ${LIBFACTER_STANDARD_SOURCES} ${LIBFACTER_PLATFORM_SOURCES})
 set_target_properties(libfactersrc PROPERTIES POSITION_INDEPENDENT_CODE true)
 add_library(libfacter SHARED $<TARGET_OBJECTS:libfactersrc>)
-set_target_properties(libfacter PROPERTIES PREFIX "" SUFFIX ".so" IMPORT_PREFIX "" IMPORT_SUFFIX ".so.a" VERSION "${LIBFACTER_VERSION_MAJOR}.${LIBFACTER_VERSION_MINOR}.${LIBFACTER_VERSION_PATCH}")
+set_target_properties(libfacter PROPERTIES VERSION "${LIBFACTER_VERSION_MAJOR}.${LIBFACTER_VERSION_MINOR}.${LIBFACTER_VERSION_PATCH}")
 
 if(AIX)
     # On AIX we need to be built such that we are "dynamically

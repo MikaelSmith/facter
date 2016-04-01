@@ -34,6 +34,7 @@ namespace facter { namespace facts {
     {
         if (user::is_admin()) {
             // Get the common data path
+#if 0
             TCHAR szPath[MAX_PATH];
             if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath))) {
                 path p = path(szPath) / "PuppetLabs" / "facter" / "facts.d";
@@ -41,6 +42,9 @@ namespace facter { namespace facts {
             }
 
             LOG_WARNING("error finding COMMON_APPDATA, external facts unavailable: %1%", leatherman::windows::system_error());
+#else
+            path p = path("C:") / "ProgramData" / "PuppetLabs" / "facter" / "facts.d";
+#endif
         } else {
             auto home = user::home_dir();
             if (!home.empty()) {

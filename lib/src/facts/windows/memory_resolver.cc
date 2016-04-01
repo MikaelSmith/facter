@@ -10,6 +10,7 @@ namespace facter { namespace facts { namespace windows {
 
     memory_resolver::data memory_resolver::collect_data(collection& facts)
     {
+#if 0
         PERFORMANCE_INFORMATION statex;
         if (!GetPerformanceInfo(&statex, sizeof(statex))) {
             LOG_DEBUG("resolving memory facts failed: %1%", system_error());
@@ -20,6 +21,9 @@ namespace facter { namespace facts { namespace windows {
         result.mem_total = statex.PhysicalTotal*statex.PageSize;
         result.mem_free = statex.PhysicalAvailable*statex.PageSize;
         return result;
+#else
+        return {};
+#endif
     }
 
 }}}  // namespace facter::facts::windows

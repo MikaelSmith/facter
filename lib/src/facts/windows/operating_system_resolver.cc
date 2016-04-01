@@ -55,10 +55,14 @@ namespace facter { namespace facts { namespace windows {
         // includes native facter), system32 points to 32-bit executables; Windows invisibly redirects it. It also
         // provides a link at %SYSTEMROOT%\sysnative for the 64-bit versions. Return the system path where OS-native
         // executables can be found.
+#if 0
         TCHAR szPath[MAX_PATH];
         if (!SUCCEEDED(SHGetFolderPath(NULL, CSIDL_WINDOWS, NULL, 0, szPath))) {
             LOG_DEBUG("error finding SYSTEMROOT: %1%", leatherman::windows::system_error());
         }
+#else
+        auto szPath = "C:/Windows";
+#endif
 
         auto pathNative = path(szPath) / "sysnative";
         boost::system::error_code ec;
