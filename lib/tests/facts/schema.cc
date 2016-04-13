@@ -464,7 +464,7 @@ void validate_attributes(YAML::Node const& node)
     for (auto const& attribute : node) {
         auto attribute_name = attribute.first.as<string>();
         CAPTURE(attribute_name);
-        REQUIRE_THAT(attribute_name, AnyOf(
+        REQUIRE_THAT(attribute_name, Catch::Matchers::AnyOf(
             Catch::Equals("pattern"),
             Catch::Equals("type")).add(
             Catch::Equals("hidden")).add(
@@ -489,7 +489,7 @@ void validate_attributes(YAML::Node const& node)
     REQUIRE(type_attribute);
     REQUIRE(type_attribute.IsScalar());
     auto type = type_attribute.as<string>();
-    REQUIRE_THAT(type, AnyOf(
+    REQUIRE_THAT(type, Catch::Matchers::AnyOf(
         Catch::Equals("integer"),
         Catch::Equals("double")).add(
         Catch::Equals("string")).add(
@@ -510,7 +510,7 @@ void validate_attributes(YAML::Node const& node)
         if (validate_attribute) {
             REQUIRE(validate_attribute.IsScalar());
             validate = validate_attribute.as<string>();
-            REQUIRE_THAT(validate, AnyOf(Catch::Equals("true"), Catch::Equals("false")));
+            REQUIRE_THAT(validate, Catch::Matchers::AnyOf(Catch::Equals("true"), Catch::Equals("false")));
         }
 
         // Validated map values must have elements
@@ -531,7 +531,7 @@ void validate_attributes(YAML::Node const& node)
     if (hidden_attribute) {
         REQUIRE(hidden_attribute.IsScalar());
         auto hidden = hidden_attribute.as<string>();
-        REQUIRE_THAT(hidden, AnyOf(Catch::Equals("true"), Catch::Equals("false")));
+        REQUIRE_THAT(hidden, Catch::Matchers::AnyOf(Catch::Equals("true"), Catch::Equals("false")));
     }
 
     // Node must have a description attribute

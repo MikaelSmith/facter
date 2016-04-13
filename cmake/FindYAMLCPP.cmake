@@ -7,7 +7,7 @@ else()
 endif()
 
 if (WIN32)
-  find_dependency(YAMLCPP DISPLAY "yaml-cpp" HEADERS "yaml-cpp/yaml.h" LIBRARIES "libyaml-cppmd" "yaml-cpp")
+  find_dependency(YAMLCPP DISPLAY "yaml-cpp" HEADERS "yaml-cpp/yaml.h" LIBRARIES "libyaml-cppmdd" "yaml-cpp")
 else()
   find_dependency(YAMLCPP DISPLAY "yaml-cpp" HEADERS "yaml-cpp/yaml.h" LIBRARIES ${yaml_lib})
 endif()

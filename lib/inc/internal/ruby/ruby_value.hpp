@@ -97,10 +97,6 @@ namespace facter { namespace ruby {
         ruby_value const* child(const std::string& key) const;
 
      private:
-        static void to_json(leatherman::ruby::api const& ruby, leatherman::ruby::VALUE value, facts::json_allocator& allocator, facts::json_value& json);
-        static void write(leatherman::ruby::api const& ruby, leatherman::ruby::VALUE value, std::ostream& os, bool quoted, unsigned int level);
-        static void write(leatherman::ruby::api const& ruby, leatherman::ruby::VALUE value, YAML::Emitter& emitter);
-
         leatherman::ruby::VALUE _value;
 
         // This is mutable because of constness that's passed down

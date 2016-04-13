@@ -6,6 +6,7 @@
 #include <leatherman/logging/logging.hpp>
 #include <boost/range/combine.hpp>
 #include <boost/nowide/convert.hpp>
+#include <sstream>
 #include <iomanip>
 #include <Ws2tcpip.h>
 #include <iphlpapi.h>

@@ -49,7 +49,7 @@ namespace facter { namespace facts { namespace resolvers {
             value->add("size_bytes", make_value<integer_value>(disk.size));
             value->add("size", make_value<string_value>(si_string(disk.size)));
 
-            if (names.tellp() != 0) {
+            if (names.tellp() != static_cast<streampos>(0)) {
                 names << ',';
             }
             names << disk.name;

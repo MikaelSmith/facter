@@ -110,7 +110,7 @@ namespace facter { namespace facts { namespace resolvers {
             }
 
             // Add the interface to the list of names
-            if (interface_names.tellp() != 0) {
+            if (interface_names.tellp() != static_cast<streampos>(0)) {
                 interface_names << ",";
             }
             interface_names << interface.name;
@@ -135,7 +135,7 @@ namespace facter { namespace facts { namespace resolvers {
             networking->add("primary", make_value<string_value>(move(data.primary_interface)));
         }
 
-        if (interface_names.tellp() != 0) {
+        if (interface_names.tellp() != static_cast<streampos>(0)) {
             facts.add(fact::interfaces, make_value<string_value>(interface_names.str(), true));
         }
 

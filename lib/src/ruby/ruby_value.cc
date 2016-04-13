@@ -13,264 +13,291 @@ using namespace leatherman::ruby;
 
 namespace facter { namespace ruby {
 
-    ruby_value::ruby_value(VALUE value) :
-        _value(value)
-    {
-        auto const& ruby = api::instance();
-        ruby.rb_gc_register_address(&_value);
-    }
+	static void write_impl(api const& ruby, VALUE value, ostream& os, bool quoted, unsigned int level);
+	static void write_impl(api const& ruby, VALUE value, YAML::Emitter& emitter);
+	static void to_json_impl(api const& ruby, VALUE value, json_allocator& allocator, json_value& json);
 
-    ruby_value::~ruby_value()
-    {
-        auto const& ruby = api::instance();
-        ruby.rb_gc_unregister_address(&_value);
-    }
+	ruby_value::ruby_value(VALUE value) :
+		_value(value)
+	{
+		auto const& ruby = api::instance();
+		ruby.rb_gc_register_address(&_value);
+	}
 
-    ruby_value::ruby_value(ruby_value&& other) :
-        _value(other._value)
-    {
-        auto const& ruby = api::instance();
-        ruby.rb_gc_register_address(&_value);
-    }
+	ruby_value::~ruby_value()
+	{
+		auto const& ruby = api::instance();
+		ruby.rb_gc_unregister_address(&_value);
+	}
 
-    ruby_value& ruby_value::operator=(ruby_value&& other)
-    {
-        _value = other._value;
-        return *this;
-    }
+	ruby_value::ruby_value(ruby_value&& other) :
+		_value(other._value)
+	{
+		auto const& ruby = api::instance();
+		ruby.rb_gc_register_address(&_value);
+	}
 
-    void ruby_value::to_json(json_allocator& allocator, json_value& value) const
-    {
-        auto const& ruby = api::instance();
-        to_json(ruby, _value, allocator, value);
-    }
+	ruby_value& ruby_value::operator=(ruby_value&& other)
+	{
+		_value = other._value;
+		return *this;
+	}
 
-    ostream& ruby_value::write(ostream& os, bool quoted, unsigned int level) const
-    {
-        auto const& ruby = api::instance();
-        write(ruby, _value, os, quoted, level);
-        return os;
-    }
+	void ruby_value::to_json(json_allocator& allocator, json_value& value) const
+	{
+		auto const& ruby = api::instance();
+		to_json_impl(ruby, _value, allocator, value);
+	}
 
-    Emitter& ruby_value::write(Emitter& emitter) const
-    {
-        auto const& ruby = api::instance();
-        write(ruby, _value, emitter);
-        return emitter;
-    }
+	ostream& ruby_value::write(ostream& os, bool quoted, unsigned int level) const
+	{
+		auto const& ruby = api::instance();
+		write_impl(ruby, _value, os, quoted, level);
+		return os;
+	}
 
-    VALUE ruby_value::value() const
-    {
-        return _value;
-    }
+	Emitter& ruby_value::write(Emitter& emitter) const
+	{
+		auto const& ruby = api::instance();
+		write_impl(ruby, _value, emitter);
+		return emitter;
+	}
 
-    void ruby_value::to_json(api const& ruby, VALUE value, json_allocator& allocator, json_value& json)
-    {
-        if (ruby.is_true(value)) {
-            json.SetBool(true);
-            return;
-        }
-        if (ruby.is_false(value)) {
-            json.SetBool(true);
-            return;
-        }
-        if (ruby.is_string(value) || ruby.is_symbol(value)) {
-            volatile VALUE temp = value;
+	VALUE ruby_value::value() const
+	{
+		return _value;
+	}
 
-            if (ruby.is_symbol(value)) {
-                temp = ruby.rb_funcall(value, ruby.rb_intern("to_s"), 0);
-            }
+	static void array_to_json(api const& ruby, VALUE value, json_allocator& allocator, json_value& json)
+	{
+		ruby.array_for_each(value, [&](VALUE element) {
+			json_value child;
+			to_json_impl(ruby, element, allocator, child);
+			json.PushBack(child, allocator);
+			return true;
+		});
+	}
 
-            size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(temp, ruby.rb_intern("bytesize"), 0)));
-            char const* str = ruby.rb_string_value_ptr(&temp);
-            json.SetString(str, size, allocator);
-            return;
-        }
-        if (ruby.is_fixednum(value)) {
-            json.SetInt64(ruby.rb_num2long(value));
-            return;
-        }
-        if (ruby.is_float(value)) {
-            json.SetDouble(ruby.rb_num2dbl(value));
-            return;
-        }
-        if (ruby.is_array(value)) {
-            json.SetArray();
-            size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(value, ruby.rb_intern("size"), 0)));
-            json.Reserve(size, allocator);
+	static void hash_to_json(api const& ruby, VALUE value, json_allocator& allocator, json_value& json)
+	{
+		ruby.hash_for_each(value, [&](VALUE key, VALUE element) {
+			// If the key isn't a string, convert to string
+			if (!ruby.is_string(key)) {
+				key = ruby.rb_funcall(key, ruby.rb_intern("to_s"), 0);
+			}
+			json_value child;
+			to_json_impl(ruby, element, allocator, child);
+			json.AddMember(json_value(ruby.rb_string_value_ptr(&key), allocator), child, allocator);
+			return true;
+		});
+	}
 
-            ruby.array_for_each(value, [&](VALUE element) {
-                json_value child;
-                to_json(ruby, element, allocator, child);
-                json.PushBack(child, allocator);
-                return true;
-            });
-            return;
-        }
-        if (ruby.is_hash(value)) {
-            json.SetObject();
+	static void to_json_impl(api const& ruby, VALUE value, json_allocator& allocator, json_value& json)
+	{
+		if (ruby.is_true(value)) {
+			json.SetBool(true);
+			return;
+		}
+		if (ruby.is_false(value)) {
+			json.SetBool(true);
+			return;
+		}
+		if (ruby.is_string(value) || ruby.is_symbol(value)) {
+			volatile VALUE temp = value;
 
-            ruby.hash_for_each(value, [&](VALUE key, VALUE element) {
-                // If the key isn't a string, convert to string
-                if (!ruby.is_string(key)) {
-                    key = ruby.rb_funcall(key, ruby.rb_intern("to_s"), 0);
-                }
-                json_value child;
-                to_json(ruby, element, allocator, child);
-                json.AddMember(json_value(ruby.rb_string_value_ptr(&key), allocator), child, allocator);
-                return true;
-            });
-            return;
-        }
+			if (ruby.is_symbol(value)) {
+				temp = ruby.rb_funcall(value, ruby.rb_intern("to_s"), 0);
+			}
 
-        json.SetNull();
-    }
+			size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(temp, ruby.rb_intern("bytesize"), 0)));
+			char const* str = ruby.rb_string_value_ptr(&temp);
+			json.SetString(str, size, allocator);
+			return;
+		}
+		if (ruby.is_fixednum(value)) {
+			json.SetInt64(ruby.rb_num2long(value));
+			return;
+		}
+		if (ruby.is_float(value)) {
+			json.SetDouble(ruby.rb_num2dbl(value));
+			return;
+		}
+		if (ruby.is_array(value)) {
+			json.SetArray();
+			size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(value, ruby.rb_intern("size"), 0)));
+			json.Reserve(size, allocator);
 
-    void ruby_value::write(api const& ruby, VALUE value, ostream& os, bool quoted, unsigned int level)
-    {
-        if (ruby.is_true(value)) {
-            os << boolalpha << true << noboolalpha;
-            return;
-        }
-        if (ruby.is_false(value)) {
-            os << boolalpha << false << noboolalpha;
-            return;
-        }
-        if (ruby.is_string(value) || ruby.is_symbol(value)) {
-            volatile VALUE temp = value;
+			array_to_json(ruby, value, allocator, json);
+			return;
+		}
+		if (ruby.is_hash(value)) {
+			json.SetObject();
 
-            if (ruby.is_symbol(value)) {
-                temp = ruby.rb_funcall(value, ruby.rb_intern("to_s"), 0);
-            }
+			hash_to_json(ruby, value, allocator, json);
+			return;
+		}
 
-            size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(temp, ruby.rb_intern("bytesize"), 0)));
-            char const* str = ruby.rb_string_value_ptr(&temp);
+		json.SetNull();
+	}
 
-            if (quoted) {
-                os << '"';
-            }
-            os.write(str, size);
-            if (quoted) {
-                os << '"';
-            }
-            return;
-        }
-        if (ruby.is_fixednum(value)) {
-            os << ruby.rb_num2long(value);
-            return;
-        }
-        if (ruby.is_float(value)) {
-            os << ruby.rb_num2dbl(value);
-            return;
-        }
-        if (ruby.is_array(value)) {
-            auto size = ruby.rb_num2ulong(ruby.rb_funcall(value, ruby.rb_intern("size"), 0));
-            if (size == 0) {
-                os << "[]";
-                return;
-            }
+	static void array_to_stream(api const& ruby, VALUE value, ostream& os, unsigned int level)
+	{
+		bool first = true;
+		ruby.array_for_each(value, [&](VALUE element) {
+			if (first) {
+				first = false;
+			}
+			else {
+				os << ",\n";
+			}
+			fill_n(ostream_iterator<char>(os), level * 2, ' ');
+			write_impl(ruby, element, os, true, level + 1);
+			return true;
+		});
+	}
 
-            os << "[\n";
-            bool first = true;
-            ruby.array_for_each(value, [&](VALUE element) {
-                if (first) {
-                    first = false;
-                } else {
-                    os << ",\n";
-                }
-                fill_n(ostream_iterator<char>(os), level * 2, ' ');
-                write(ruby, element, os, true, level + 1);
-                return true;
-            });
-            os << "\n";
-            fill_n(ostream_iterator<char>(os), (level > 0 ? (level - 1) : 0) * 2, ' ');
-            os << "]";
-            return;
-        }
-        if (ruby.is_hash(value)) {
-            auto size = ruby.rb_num2ulong(ruby.rb_funcall(value, ruby.rb_intern("size"), 0));
-            if (size == 0) {
-                os << "{}";
-                return;
-            }
-            os << "{\n";
-            bool first = true;
-            ruby.hash_for_each(value, [&](VALUE key, VALUE element) {
-                if (first) {
-                    first = false;
-                } else {
-                    os << ",\n";
-                }
+	static void hash_to_stream(api const& ruby, VALUE value, ostream& os, unsigned int level)
+	{
+		bool first = true;
+		ruby.hash_for_each(value, [&](VALUE key, VALUE element) {
+			if (first) {
+				first = false;
+			}
+			else {
+				os << ",\n";
+			}
 
-                // If the key isn't a string, convert to string
-                if (!ruby.is_string(key)) {
-                    key = ruby.rb_funcall(key, ruby.rb_intern("to_s"), 0);
-                }
+			// If the key isn't a string, convert to string
+			if (!ruby.is_string(key)) {
+				key = ruby.rb_funcall(key, ruby.rb_intern("to_s"), 0);
+			}
 
-                size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(key, ruby.rb_intern("bytesize"), 0)));
-                char const* str = ruby.rb_string_value_ptr(&key);
+			size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(key, ruby.rb_intern("bytesize"), 0)));
+			char const* str = ruby.rb_string_value_ptr(&key);
 
-                fill_n(ostream_iterator<char>(os), level * 2, ' ');
-                os.write(str, size);
-                os << " => ";
-                write(ruby, element, os, true, level + 1);
-                return true;
-            });
-            os << "\n";
-            fill_n(ostream_iterator<char>(os), (level > 0 ? (level - 1) : 0) * 2, ' ');
-            os << "}";
-            return;
-        }
-    }
+			fill_n(ostream_iterator<char>(os), level * 2, ' ');
+			os.write(str, size);
+			os << " => ";
+			write_impl(ruby, element, os, true, level + 1);
+			return true;
+		});
 
-    void ruby_value::write(api const& ruby, VALUE value, YAML::Emitter& emitter)
-    {
-        if (ruby.is_true(value)) {
-            emitter << true;
-            return;
-        }
-        if (ruby.is_false(value)) {
-            emitter << false;
-            return;
-        }
-        if (ruby.is_string(value) || ruby.is_symbol(value)) {
-            auto str = ruby.to_string(value);
-            if (needs_quotation(str)) {
-                emitter << DoubleQuoted;
-            }
-            emitter << str;
-            return;
-        }
-        if (ruby.is_fixednum(value)) {
-            emitter << ruby.rb_num2long(value);
-            return;
-        }
-        if (ruby.is_float(value)) {
-            emitter << ruby.rb_num2dbl(value);
-            return;
-        }
-        if (ruby.is_array(value)) {
-            emitter << BeginSeq;
-            ruby.array_for_each(value, [&](VALUE element) {
-                write(ruby, element, emitter);
-                return true;
-            });
-            emitter << EndSeq;
-            return;
-        }
-        if (ruby.is_hash(value)) {
-            emitter << BeginMap;
-            ruby.hash_for_each(value, [&](VALUE key, VALUE element) {
-                emitter << Key << ruby.to_string(key) << YAML::Value;
-                write(ruby, element, emitter);
-                return true;
-            });
-            emitter << EndMap;
-            return;
-        }
+	}
 
-        emitter << Null;
-    }
+	static void write_impl(api const& ruby, VALUE value, ostream& os, bool quoted, unsigned int level)
+	{
+		if (ruby.is_true(value)) {
+			os << boolalpha << true << noboolalpha;
+			return;
+		}
+		if (ruby.is_false(value)) {
+			os << boolalpha << false << noboolalpha;
+			return;
+		}
+		if (ruby.is_string(value) || ruby.is_symbol(value)) {
+			volatile VALUE temp = value;
+
+			if (ruby.is_symbol(value)) {
+				temp = ruby.rb_funcall(value, ruby.rb_intern("to_s"), 0);
+			}
+
+			size_t size = static_cast<size_t>(ruby.rb_num2ulong(ruby.rb_funcall(temp, ruby.rb_intern("bytesize"), 0)));
+			char const* str = ruby.rb_string_value_ptr(&temp);
+
+			if (quoted) {
+				os << '"';
+			}
+			os.write(str, size);
+			if (quoted) {
+				os << '"';
+			}
+			return;
+		}
+		if (ruby.is_fixednum(value)) {
+			os << ruby.rb_num2long(value);
+			return;
+		}
+		if (ruby.is_float(value)) {
+			os << ruby.rb_num2dbl(value);
+			return;
+		}
+		if (ruby.is_array(value)) {
+			auto size = ruby.rb_num2ulong(ruby.rb_funcall(value, ruby.rb_intern("size"), 0));
+			if (size == 0) {
+				os << "[]";
+				return;
+			}
+
+			os << "[\n";
+			array_to_stream(ruby, value, os, level);
+			os << "\n";
+			fill_n(ostream_iterator<char>(os), (level > 0 ? (level - 1) : 0) * 2, ' ');
+			os << "]";
+			return;
+		}
+		if (ruby.is_hash(value)) {
+			auto size = ruby.rb_num2ulong(ruby.rb_funcall(value, ruby.rb_intern("size"), 0));
+			if (size == 0) {
+				os << "{}";
+				return;
+			}
+			os << "{\n";
+			hash_to_stream(ruby, value, os, level);
+			os << "\n";
+			fill_n(ostream_iterator<char>(os), (level > 0 ? (level - 1) : 0) * 2, ' ');
+			os << "}";
+			return;
+		}
+	}
+
+	static void write_impl(api const& ruby, VALUE value, YAML::Emitter& emitter)
+	{
+		if (ruby.is_true(value)) {
+			emitter << true;
+			return;
+		}
+		if (ruby.is_false(value)) {
+			emitter << false;
+			return;
+		}
+		if (ruby.is_string(value) || ruby.is_symbol(value)) {
+			auto str = ruby.to_string(value);
+			if (needs_quotation(str)) {
+				emitter << DoubleQuoted;
+			}
+			emitter << str;
+			return;
+		}
+		if (ruby.is_fixednum(value)) {
+			emitter << ruby.rb_num2long(value);
+			return;
+		}
+		if (ruby.is_float(value)) {
+			emitter << ruby.rb_num2dbl(value);
+			return;
+		}
+		if (ruby.is_array(value)) {
+			emitter << BeginSeq;
+			ruby.array_for_each(value, [&](VALUE element) {
+				write_impl(ruby, element, emitter);
+				return true;
+			});
+			emitter << EndSeq;
+			return;
+		}
+		if (ruby.is_hash(value)) {
+			emitter << BeginMap;
+			ruby.hash_for_each(value, [&](VALUE key, VALUE element) {
+				emitter << Key << ruby.to_string(key) << YAML::Value;
+				write_impl(ruby, element, emitter);
+				return true;
+			});
+			emitter << EndMap;
+			return;
+		}
+
+		emitter << Null;
+	}
 
     ruby_value const* ruby_value::wrap_child(VALUE child, string key) const {
         return _children.emplace(move(key), std::unique_ptr<ruby_value>(new ruby_value(child))).first->second.get();
