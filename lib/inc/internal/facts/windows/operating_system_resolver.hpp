@@ -19,7 +19,7 @@ namespace facter { namespace facts { namespace windows {
          * Constructs the operating_system_resolver.
          * @param wmi_conn The WMI connection to use when resolving facts.
          */
-        operating_system_resolver(std::shared_ptr<leatherman::windows::wmi> wmi_conn = std::make_shared<leatherman::windows::wmi>());
+        operating_system_resolver(std::shared_ptr<leatherman::windows::wmi> wmi_conn = leatherman::windows::wmi::get_wmi());
 
      protected:
         /**

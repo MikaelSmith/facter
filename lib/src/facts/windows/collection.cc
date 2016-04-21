@@ -77,7 +77,7 @@ namespace facter { namespace facts {
         add(make_shared<windows::timezone_resolver>());
 
         try {
-            shared_ptr<wmi> shared_wmi = make_shared<wmi>();
+            shared_ptr<wmi> shared_wmi = wmi::get_wmi();
             add(make_shared<windows::dmi_resolver>(shared_wmi));
             add(make_shared<windows::operating_system_resolver>(shared_wmi));
             add(make_shared<windows::processor_resolver>(shared_wmi));

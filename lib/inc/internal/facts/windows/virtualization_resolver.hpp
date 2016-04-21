@@ -20,7 +20,7 @@ namespace facter { namespace facts { namespace windows {
          * Constructs the virtualization_resolver.
          * @param wmi_conn The WMI connection to use when resolving facts.
          */
-        virtualization_resolver(std::shared_ptr<leatherman::windows::wmi> wmi_conn = std::make_shared<leatherman::windows::wmi>());
+        virtualization_resolver(std::shared_ptr<leatherman::windows::wmi> wmi_conn = leatherman::windows::wmi::get_wmi());
 
      protected:
         /**
