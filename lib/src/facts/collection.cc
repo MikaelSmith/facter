@@ -122,6 +122,7 @@ namespace facter { namespace facts {
             return;
 
         _facts[move(name)] = move(value);
+        LOG_INFO("value weight = %1%", value->weight());
     }
 
     void collection::add_custom(string name, unique_ptr<value> value, size_t weight)
