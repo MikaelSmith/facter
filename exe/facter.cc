@@ -127,6 +127,10 @@ void print_fact_groups(map<string, vector<string>> const& fact_groups) {
 
 int main(int argc, char **argv)
 {
+    // Reset errno in case a bug LD_PRELOAD set it (like the memory debugger on
+    // Cisco IOS XR).
+    errno = 0;
+
     try
     {
         // Fix args on Windows to be UTF-8
