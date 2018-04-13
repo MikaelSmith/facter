@@ -309,6 +309,7 @@ namespace facter { namespace facts {
     {
         resolve_facts();
 
+        // cppcheck-suppress ignoredReturnValue
         find_if(begin(_facts), end(_facts), [&func](map<string, unique_ptr<value>>::value_type const& it) {
             return !func(it.first, it.second.get());
         });

@@ -67,6 +67,7 @@ struct multi_resolver : facter::facts::resolver
 
 struct temp_variable
 {
+    // cppcheck-suppress passedByValue
     temp_variable(string name, string const& value) :
         _name(move(name))
     {
